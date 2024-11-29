@@ -1,0 +1,12 @@
+cat <<EOF > .gitignore
+# Go binary files
+*.linux-amd64.tar.gz
+*.linux-arm64.tar.gz
+go1.23.3
+
+# Go build artifacts
+*.exe
+*.out
+*.test
+EOF
+LICENSE
