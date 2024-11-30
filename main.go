@@ -1,11 +1,13 @@
-/*
-Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
-*/
 package main
 
-import "mycli/cmd"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func main() {
-	cmd.Execute()
+	scanner := bufio.NewScanner(os.Stdin) // 標準入力を受け付けるスキャナ
+	scanner.Scan() // １行分の入力を取得する
+	fmt.Println(scanner.Text())
 }
