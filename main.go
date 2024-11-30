@@ -9,25 +9,43 @@ import (
 
 func main() {
 	reader := bufio.NewReader(os.Stdin)
+	data := make(map[string]string)
 
 	for {
-		fmt.Println("1:単語入力")
-		fmt.Println("2:辞書登録リスト")
-		fmt.Println("3:終了")
+		fmt.Println("1: データを登録")
+		fmt.Println("2: 保存されたデータを表示")
+		fmt.Println("3: 終了")
+		fmt.Print("選択してください: ")
 
-	input, _ := reader.ReadString('\n')
-	input = strings.TrimSpace(input)
+		choice, _ := reader.ReadString('\n')
+		choice = strings.TrimSpace(choice)
 
-	switch input {
-	case "1":
-		fmt.Println("単語入力")
-	case "2":
-		fmt.Println("選択した辞書リストです")
-	case "3":
-		fmt.Println("終了します")
-		return
-	default:
-		fmt.Println("無効な数字が入力されました")
+		switch choice {
+		case "1":
+			fmt.Print("キーを入力してください: ")
+			key, _ := reader.ReadString('\n')
+			key = strings.TrimSpace(key)
+
+			fmt.Print("値を入力してください: ")
+			value, _ := reader.ReadString('\n')
+			value = strings.TrimSpace(value)
+
+			data[key] = value
+			fmt.Printf("登録されました: %s - %s\n", key, value)
+		case "2":
+			if len(data) == 0 {
+				fmt.Println("保存されたデータはありません")
+			} else {
+				fmt.Println("保存されたデータ:")
+				for key, value := range data {
+					fmt.Printf("%s: %s\n", key, value)
+				}
+			}
+		case "3":
+			fmt.Println("終了します")
+			return
+		default:
+			fmt.Println("無効な選択です。もう一度試してください")
+		}
 	}
-  }
 }
