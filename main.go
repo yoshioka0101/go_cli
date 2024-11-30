@@ -14,7 +14,8 @@ func main() {
 	for {
 		fmt.Println("1: データを登録")
 		fmt.Println("2: 保存されたデータを表示")
-		fmt.Println("3: 終了")
+		fmt.Println("3: キーを検索して値を取得")
+		fmt.Println("4: 終了")
 		fmt.Print("選択してください: ")
 
 		choice, _ := reader.ReadString('\n')
@@ -42,6 +43,16 @@ func main() {
 				}
 			}
 		case "3":
+			fmt.Print("検索するキーを入力してください: ")
+			key, _ := reader.ReadString('\n')
+			key = strings.TrimSpace(key)
+
+			if value, exists := data[key]; exists {
+				fmt.Printf("キー「%s」の値は「%s」です\n", key, value)
+			} else {
+				fmt.Printf("キー「%s」は登録されていません\n", key)
+			}
+		case "4":
 			fmt.Println("終了します")
 			return
 		default:
